@@ -1,4 +1,30 @@
-<p>
-  Modify me in `app/views/homes/index.html.erb` or change the root directive in
-  `config/routes.rb`
-</p>
+<div>
+  <%- if current_user -%>
+    <div>
+      <h2>10MM KINGS OF WAR</h2>
+      <%= link_to edit_user_registration_path do %>
+        <div>EDIT PROFILE</div>
+      <%- end -%>
+      <%= link_to destroy_user_session_path, method: :delete do %>
+        <div>SIGN OUT</div>
+      <%- end -%>
+    </div>
+  <%- else -%>
+    <div>
+      <h2>10MM KINGS OF WAR</h2>
+      <h5>KINGS OF WAR PLAYED WITH 10MM MINIATURES</h5>
+      <p>
+        <%= [
+          'Kings of War is a Mantic Games product.',
+          'The creators of this website do not own the rights to Kings of War.'
+        ].join("\n") + "\n" %>
+      </p>
+      <%= link_to new_user_registration_path do %>
+        <div>SIGN UP</div>
+      <%- end -%>
+      <%= link_to new_user_session_path do %>
+        <div>SIGN IN</div>
+      <%- end -%>
+    </div>
+  <%- end -%>
+</div>
