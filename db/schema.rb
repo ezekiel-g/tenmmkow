@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_24_060523) do
+ActiveRecord::Schema.define(version: 2018_08_26_165630) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,13 +21,36 @@ ActiveRecord::Schema.define(version: 2018_08_24_060523) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "fieldings", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "unit_id"
+  create_table "groups", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "description"
+    t.integer "owner_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["unit_id"], name: "index_fieldings_on_unit_id"
-    t.index ["user_id"], name: "index_fieldings_on_user_id"
+  end
+
+  create_table "memberships", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "army_id"
+    t.bigint "group_id"
+    t.text "units_allowed", default: "all"
+    t.integer "rp"
+    t.text "list"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["army_id"], name: "index_memberships_on_army_id"
+    t.index ["group_id"], name: "index_memberships_on_group_id"
+    t.index ["user_id"], name: "index_memberships_on_user_id"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.string "body", null: false
+    t.bigint "user_id"
+    t.bigint "group_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["group_id"], name: "index_messages_on_group_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
   create_table "units", force: :cascade do |t|
@@ -43,15 +66,11 @@ ActiveRecord::Schema.define(version: 2018_08_24_060523) do
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "role", default: "member", null: false
-    t.text "list"
-    t.integer "rp", null: false
-    t.bigint "army_id"
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["army_id"], name: "index_users_on_army_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
