@@ -5,6 +5,9 @@
       <%= link_to edit_user_registration_path do %>
         <div>EDIT PROFILE</div>
       <%- end -%>
+      <%= link_to armies_path do %>
+      <div>ALL ARMIES AND UNITS</div>
+      <%- end -%>
       <%= link_to destroy_user_session_path, method: :delete do %>
         <div>SIGN OUT</div>
       <%- end -%>
@@ -13,6 +16,7 @@
     <div>
       <h2>10MM KINGS OF WAR</h2>
       <h5>KINGS OF WAR PLAYED WITH 10MM MINIATURES</h5>
+      <h5>DISTANCES HALVED, UNIT BASE AREAS QUARTERED</h5>
       <p>
         <%= [
           'Kings of War is a Mantic Games product.',
@@ -24,6 +28,9 @@
       <%- end -%>
       <%= link_to new_user_session_path do %>
         <div>SIGN IN</div>
+      <%- end -%>
+      <%= link_to armies_path do %>
+        <div>ALL ARMIES AND UNITS</div>
       <%- end -%>
     </div>
   <%- end -%>

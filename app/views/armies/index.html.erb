@@ -1,0 +1,21 @@
+<div>
+  <h2>ARMIES AND THEIR UNITS</h2>
+
+  <%= link_to root_path do %>
+    <div>HOME</div>
+  <%- end -%>
+
+  <%- @armies.each do |army| -%>
+    <div>
+      <h5><%= army.name.upcase %></h5>
+      <%- army.units.sort_by{ |a| a.name }.each do |unit| -%>
+        <%= unit.name %><br />
+      <%- end -%>
+    </div>
+    <br />
+  <%- end -%>
+
+  <%= link_to root_path do %>
+    <div>HOME</div>
+  <%- end -%>
+</div>
