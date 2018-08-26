@@ -64,7 +64,7 @@ Unit.create!(name: 'Villein Bowmen troop', army: Army.find_by_name('The Brotherh
 Unit.create!(name: 'Villein Bowmen regiment', army: Army.find_by_name('The Brotherhood'))
 Unit.create!(name: 'Villein Bowmen horde', army: Army.find_by_name('The Brotherhood'))
 Unit.create!(name: 'Order of the Brotherhood troop on foot', army: Army.find_by_name('The Brotherhood'))
-Unit.create!(name: 'Order of the Brotherhood regiment on foot', army: Army.find_by_name('Varangur'))
+Unit.create!(name: 'Order of the Brotherhood regiment on foot', army: Army.find_by_name('The Brotherhood'))
 Unit.create!(name: 'Villein Martyr troop', army: Army.find_by_name('The Brotherhood'))
 Unit.create!(name: 'Villein Martyr regiment', army: Army.find_by_name('The Brotherhood'))
 Unit.create!(name: 'Villein Martyr horde', army: Army.find_by_name('The Brotherhood'))
