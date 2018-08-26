@@ -33,7 +33,3 @@
     <div><%= link_to "SIGN IN WITH #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider) %></div><br />
   <% end -%>
 <% end -%>
-
-<%= link_to root_path do %>
-  <div>HOME</div>
-<%- end -%>
