@@ -1,0 +1,19 @@
+<div>
+  <h2>EDIT <%= @group.name.upcase %></h2>
+
+  <%= form_for (@group) do |f| %>
+    <div>
+      <%= f.label :name, 'GROUP NAME:' %><br />
+      <%= f.text_field :name %>
+    </div>
+
+    <div>
+      <%= f.label :description, 'DESCRIPTION:' %><br />
+      <%= f.text_field :description %>
+    </div>
+
+    <div>
+      <%= f.submit 'EDIT GROUP' %>
+    </div>
+  <% end %>
+</div>

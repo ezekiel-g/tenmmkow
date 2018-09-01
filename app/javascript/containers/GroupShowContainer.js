@@ -7,12 +7,16 @@ class GroupShowContainer extends Component {
     this.state = {
       name: '',
       description: '',
-      ownerId: null
+      ownerId: null,
+      ownerName: '',
+      currentUserId: null
     }
   }
 
-  componentDidMount(){
-    fetch(`/api/v1/groups/${this.props.params.id}`)
+  componentDidMount() {
+    fetch(`/api/v1/groups/${this.props.params.id}`, {
+      credentials: 'same-origin'
+    })
     .then(response => {
       if (response.ok) {
         return response;
@@ -25,21 +29,28 @@ class GroupShowContainer extends Component {
     .then(response => response.json())
     .then(body => {
         this.setState({
-          name: body.name,
-          description: body.description,
-          ownerId: body.owner_id
+          name: body.group.name,
+          description: body.group.description,
+          ownerId: body.group.owner_id,
+          ownerName: body.owner[0].username,
+          currentUserId: body.current_user.id
         })
       })
     .catch(error => console.error(`Fetch error: ${error.message}`));
   }
 
   render() {
+    let editGroupLink = ''
+    if (this.state.currentUserId === this.state.ownerId) {
+      editGroupLink = <div><a href={`/groups/${this.props.params.id}/edit`}>EDIT THIS GROUP</a></div>
+    }
 
     return(
       <div>
         <h2>{this.state.name}</h2>
         {this.state.description}
-        GROUP CREATOR: {this.state.ownerId}
+        GROUP CREATOR: {this.state.ownerName}
+        {editGroupLink}
       </div>
     )
   }

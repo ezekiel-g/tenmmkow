@@ -10,7 +10,9 @@ class GroupsIndexContainer extends Component {
   }
 
   componentDidMount(){
-    fetch('/api/v1/groups')
+    fetch('/api/v1/groups', {
+      credentials: 'same-origin'
+    })
     .then(response => {
       if (response.ok) {
         return response;
@@ -28,6 +30,10 @@ class GroupsIndexContainer extends Component {
   }
 
   render() {
+    let newGroupLink = (
+      <div><a href='/groups/new'>CREATE GROUP</a></div>
+    )
+
     let groups = this.state.groups.map((group) => {
       return (
         <GroupTile
@@ -42,7 +48,8 @@ class GroupsIndexContainer extends Component {
     return(
       <div>
         <h2>GROUPS</h2>
-        {groups}
+        {groups}<br />
+        {newGroupLink}
       </div>
     )
   }
