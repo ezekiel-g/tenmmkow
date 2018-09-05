@@ -3,17 +3,17 @@
 
   <%= form_for (@group) do |f| %>
     <div>
-      <%= f.label :name, 'GROUP NAME:' %><br />
+      <%= f.label :name, 'Group name:' %><br />
       <%= f.text_field :name %>
     </div>
 
     <div>
-      <%= f.label :description, 'DESCRIPTION:' %><br />
+      <%= f.label :description, 'Description:' %><br />
       <%= f.text_field :description %>
     </div>
 
     <div>
-      <%= f.submit 'CREATE GROUP' %>
+      <%= f.submit 'Create group' %>
     </div>
   <% end %>
 </div>

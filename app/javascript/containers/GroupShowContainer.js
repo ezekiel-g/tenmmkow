@@ -9,7 +9,9 @@ class GroupShowContainer extends Component {
       description: '',
       ownerId: null,
       ownerName: '',
-      currentUserId: null
+      currentUserId: null,
+      membersWithArmies: [],
+      memberIds: [],
     }
   }
 
@@ -33,7 +35,10 @@ class GroupShowContainer extends Component {
           description: body.group.description,
           ownerId: body.group.owner_id,
           ownerName: body.owner[0].username,
-          currentUserId: body.current_user.id
+          currentUserId: body.current_user.id,
+          membersWithArmies: body.members_with_armies,
+          memberIds: body.member_Ids,
+          memberships: body.memberships
         })
       })
     .catch(error => console.error(`Fetch error: ${error.message}`));
@@ -42,15 +47,23 @@ class GroupShowContainer extends Component {
   render() {
     let editGroupLink = ''
     if (this.state.currentUserId === this.state.ownerId) {
-      editGroupLink = <div><a href={`/groups/${this.props.params.id}/edit`}>EDIT THIS GROUP</a></div>
+      editGroupLink = <div><a href={`/groups/${this.props.params.id}/edit`}>Edit this group</a></div>
     }
 
-    return(
+    let joinGroupLink = ''
+    if (!this.state.memberIds.includes(this.state.currentUserId)) {
+      joinGroupLink = <div><a href={`/groups/${this.props.params.id}/memberships/new`}>Join this group</a></div>
+    }
+
+    return (
       <div>
         <h2>{this.state.name}</h2>
-        {this.state.description}
-        GROUP CREATOR: {this.state.ownerName}
+        Description: {this.state.description}<br/>
+        Group creator: {this.state.ownerName}<br/>
+        Members:<br/>
+        {this.state.membersWithArmies.join(",\n")}
         {editGroupLink}
+        {joinGroupLink}
       </div>
     )
   }

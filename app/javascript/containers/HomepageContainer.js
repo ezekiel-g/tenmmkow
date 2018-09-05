@@ -14,7 +14,7 @@ class HomepageContainer extends Component {
     return(
       <div>
         <h2>10MM KINGS OF WAR</h2>
-        <Link to='/groups'>ALL GROUPS</Link>
+        <Link to='/groups'>Groups</Link>
       </div>
     )
   }
