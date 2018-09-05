@@ -31,7 +31,7 @@ class GroupsIndexContainer extends Component {
 
   render() {
     let newGroupLink = (
-      <div><a href='/groups/new'>CREATE GROUP</a></div>
+      <div><a href='/groups/new'>Form a group</a></div>
     )
 
     let groups = this.state.groups.map((group) => {
@@ -47,7 +47,7 @@ class GroupsIndexContainer extends Component {
     })
     return(
       <div>
-        <h2>GROUPS</h2>
+        <h2>Groups</h2>
         {groups}<br />
         {newGroupLink}
       </div>

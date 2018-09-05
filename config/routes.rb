@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :armies, only: [:index]
-  resources :groups
+  resources :groups do
+    resources :memberships, only: [:new, :create, :destroy]
+  end
 
   namespace :api do
     namespace :v1 do
@@ -11,7 +13,6 @@ Rails.application.routes.draw do
       resources :armies, only: [:index, :show]
       resources :units, only: [:index, :show]
       resources :groups
-      resources :memberships, only: [:create]
     end
   end
 end

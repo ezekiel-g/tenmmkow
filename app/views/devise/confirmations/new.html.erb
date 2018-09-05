@@ -5,12 +5,12 @@
   <div class='devise_messages'><%= devise_error_messages! %></div>
 
     <div class="field">
-      <%= f.label :email, "EMAIL:" %><br />
+      <%= f.label :email, "Email:" %><br />
       <%= f.email_field :email, autofocus: true, autocomplete: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) %>
     </div>
 
     <div class="actions">
-      <div class='button_link'><%= f.submit "RESEND" %></div>
+      <div class='button_link'><%= f.submit "Resend" %></div>
     </div>
   <% end %>
 
