@@ -45,14 +45,14 @@ class GroupShowContainer extends Component {
   }
 
   render() {
-    let editGroupLink = ''
-    if (this.state.currentUserId === this.state.ownerId) {
-      editGroupLink = <div><a href={`/groups/${this.props.params.id}/edit`}>Edit this group</a></div>
-    }
-
     let joinGroupLink = ''
     if (!this.state.memberIds.includes(this.state.currentUserId)) {
       joinGroupLink = <div><a href={`/groups/${this.props.params.id}/memberships/new`}>Join this group</a></div>
+    }
+
+    let editGroupLink = ''
+    if (this.state.currentUserId === this.state.ownerId) {
+      editGroupLink = <div><a href={`/groups/${this.props.params.id}/edit`}>Edit this group</a></div>
     }
 
     return (
@@ -62,8 +62,8 @@ class GroupShowContainer extends Component {
         Group creator: {this.state.ownerName}<br/>
         Members:<br/>
         {this.state.membersWithArmies.join(",\n")}
-        {editGroupLink}
         {joinGroupLink}
+        {editGroupLink}
       </div>
     )
   }

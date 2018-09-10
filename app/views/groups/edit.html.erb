@@ -15,5 +15,9 @@
     <div>
       <%= f.submit 'Edit group' %>
     </div>
+
+    <%= link_to 'Delete group', group_path(@group),
+      method: :delete,
+      data: { confirm: 'Are you sure?' } %>
   <% end %>
 </div>

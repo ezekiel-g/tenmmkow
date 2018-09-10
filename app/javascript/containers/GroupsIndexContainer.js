@@ -5,7 +5,9 @@ class GroupsIndexContainer extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      groups: []
+      groups: [],
+      currentUserId: null,
+      currentUserAdmin: false
     }
   }
 
@@ -24,15 +26,20 @@ class GroupsIndexContainer extends Component {
     })
     .then(response => response.json())
     .then(body => {
-        this.setState({ groups: body })
+        this.setState({
+          groups: body.groups,
+          currentUserId: body.current_user.id,
+          currentUserAdmin: body.current_user.admin
+        })
       })
     .catch(error => console.error(`Fetch error: ${error.message}`));
   }
 
   render() {
-    let newGroupLink = (
-      <div><a href='/groups/new'>Form a group</a></div>
-    )
+    let newGroupLink = ''
+    if (this.state.currentUserAdmin === true) {
+      newGroupLink = <div><a href={`/groups/new`}>Form a group</a></div>
+    }
 
     let groups = this.state.groups.map((group) => {
       return (
@@ -47,8 +54,8 @@ class GroupsIndexContainer extends Component {
     })
     return(
       <div>
-        <h2>Groups</h2>
-        {groups}<br />
+        <h2>GROUPS</h2>
+        {groups.reverse()}<br />
         {newGroupLink}
       </div>
     )
