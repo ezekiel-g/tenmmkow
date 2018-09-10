@@ -2,7 +2,16 @@ class Api::V1::GroupsController < ApplicationController
 
   def index
     @groups = Group.all
-    render json: @groups
+
+    if current_user
+      current_user_id = current_user.id
+      current_user_admin = current_user.admin?
+    else
+      current_user_id = nil
+      current_user_admin = false
+    end
+
+    render json: { groups: @groups, current_user: {id: current_user_id, admin: current_user_admin } }
   end
 
   def show

@@ -15,8 +15,9 @@ class GroupsController < ApplicationController
 
     if @group.save
       flash[:notice] = 'Group added successfully'
+      redirect_to groups_path
     else
-      flash[:notice] = @group.errors.full_messages
+      flash[:notice] = @group.errors.full_messages.join(' * ')
       render :new
     end
   end
@@ -28,12 +29,20 @@ class GroupsController < ApplicationController
   def update
     @group = Group.find(params[:id])
 
-    if @group.update_attriutes(group_params)
+    if @group.update_attributes(group_params)
       flash[:notice] = 'Group edited successfully'
+      redirect_to group_path(@group)
     else
-      flash[:notice] = @group.errors.full_messages
+      flash[:notice] = @group.errors.full_messages.join(' * ')
       render :edit
     end
+  end
+
+  def destroy
+    @group = Group.find(params[:id])
+    @group.destroy
+
+    redirect_to groups_path
   end
 
   private
