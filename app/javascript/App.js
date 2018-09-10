@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { Router, Route, IndexRoute, browserHistory } from 'react-router'
 
 import UserShowContainer from 'containers/UserShowContainer'
-import HomepageContainer from 'containers/HomepageContainer'
 import GroupsIndexContainer from 'containers/GroupsIndexContainer'
 import GroupShowContainer from 'containers/GroupShowContainer'
 
@@ -29,7 +28,7 @@ class App extends Component {
     return(
       <Router history={browserHistory}>
         <Route path='/'>
-          <IndexRoute component={HomepageContainer} />
+          <IndexRoute component={GroupsIndexContainer} />
           <Route path='/groups' component={GroupsIndexContainer} />
           <Route path='/groups/:id' component={GroupShowContainer} />
         </Route>

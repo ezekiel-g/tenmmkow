@@ -1,19 +1,23 @@
-<div>
-  <h2>CREATE A GROUP</h2>
+<%- if current_user.admin? -%>
+  <div>
+    <h2>CREATE GROUP</h2>
 
-  <%= form_for (@group) do |f| %>
-    <div>
-      <%= f.label :name, 'Group name:' %><br />
-      <%= f.text_field :name %>
-    </div>
+    <%= form_for (@group) do |f| %>
+      <div>
+        <%= f.label :name, 'Group name:' %><br />
+        <%= f.text_field :name %>
+      </div>
 
-    <div>
-      <%= f.label :description, 'Description:' %><br />
-      <%= f.text_field :description %>
-    </div>
+      <div>
+        <%= f.label :description, 'Description:' %><br />
+        <%= f.text_field :description %>
+      </div>
 
-    <div>
-      <%= f.submit 'Create group' %>
-    </div>
-  <% end %>
-</div>
+      <div>
+        <%= f.submit 'Create group' %>
+      </div>
+    <% end %>
+  </div>
+<%- else -%>
+  redirect_to root_path
+<%- end -%>
