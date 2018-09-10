@@ -1,14 +1,18 @@
-<div>
-  <h2>JOIN <%= @group.name.upcase %></h2>
+<%- if current_user -%>
+  <div>
+    <h2>JOIN <%= @group.name.upcase %></h2>
 
-  <%= form_for [@group, @membership] do |f| %>
-    <div>
-      <%= f.label :army, 'Army fielded for this group:', for: 'membership_army_id' %><br/>
-      <%= f.select :army_id, options_for_select(@armies.map { |a| [a.name, a.id]}) %>
-    </div>
+    <%= form_for [@group, @membership] do |f| %>
+      <div>
+        <%= f.label :army, 'Army fielded for this group:', for: 'membership_army_id' %><br/>
+        <%= f.select :army_id, options_for_select(@armies.map { |a| [a.name, a.id]}) %>
+      </div>
 
-    <div>
-      <%= f.submit 'Join' %>
-    </div>
-  <%- end -%>
-</div>
+      <div>
+        <%= f.submit 'Join' %>
+      </div>
+    <%- end -%>
+  </div>
+<%- else -%>
+  redirect_to root_path
+<%- end -%>

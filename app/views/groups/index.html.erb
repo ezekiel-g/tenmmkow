@@ -1,2 +1,18 @@
-<div id='app'>
+<div>
+  <%- if current_user -%>
+      <div id='app'>
+      </div>
+  <%- else -%>
+    <div>
+      <h2>10MM KINGS OF WAR</h2>
+      <h5>KINGS OF WAR PLAYED WITH 10MM MINIATURES</h5>
+      <h5>DISTANCES HALVED, UNIT BASE AREAS QUARTERED</h5>
+      <p>
+        <%= [
+          'Kings of War is a Mantic Games product.',
+          'The creators of this website do not own the rights to Kings of War.'
+        ].join("\n") + "\n" %>
+      </p>
+    </div>
+  <%- end -%>
 </div>

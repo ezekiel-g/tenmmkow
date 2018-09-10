@@ -38,7 +38,7 @@ class GroupsIndexContainer extends Component {
   render() {
     let newGroupLink = ''
     if (this.state.currentUserAdmin === true) {
-      newGroupLink = <div><a href={`/groups/new`}>Form a group</a></div>
+      newGroupLink = <div><a href={`/groups/new`}>Create a group</a></div>
     }
 
     let groups = this.state.groups.map((group) => {

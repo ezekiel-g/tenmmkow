@@ -1,4 +1,6 @@
 class MembershipsController < ApplicationController
+  before_action :authenticate_user!
+
   def new
     @armies = Army.all
     @group = Group.find(params[:group_id])
