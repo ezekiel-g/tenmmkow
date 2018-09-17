@@ -16,6 +16,7 @@ class MembershipsController < ApplicationController
 
     if @membership.save
       flash[:notice] = 'Group joined successfully'
+      redirect_to group_path(@group)
     else
       flash.now[:notice] = @membership.errors.full_messages.join(' * ')
       render :new
